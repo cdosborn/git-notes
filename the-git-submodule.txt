@@ -1,0 +1,311 @@
+Git is a difficult tool to teach at Software Carpentry. It's easy to talk
+about the benefits of git: persistent undo, collaboration, a documented
+history. Yet, after the typical workshop these benefits are hardly realized.
+At best you have an attendee that runs the following progression through their
+head:
+
+    git add, git commit, git push
+
+They see their changes on Github, but it feels superficial. A typical approach
+is to teach git via the git work flow. It's an easy way to get results. You
+teach the commands in a hands on approach, and by the end of the workshop they
+can comfortably download, make some changes, and upload. So, they have become
+users of git, a tool that everyone agrees is _amazing_. However the skeptical
+attendee will likely be frustrated. 
+
+    How do I undo? 
+    How do I view an earlier version?
+    Can I work on different versions of my project at a time?
+    How do I even collaborate?
+    What is the stage, why does that exist?
+    Why is git better than google documents, for all the additional hassle?
+    How does git make it difficult to lose history?
+
+Below I've outlined an introduction to git that favors understanding over
+practice. After this intro, a more hands on project like having the classroom
+build a collaborative story will be in reach, and the concepts of branches,
+merges, and remotes should be frictionless.
+
+Gradually introduce the vocab and recognize that git has its own lexicon. 
+    I give a handout with all the terminology with commonsense definitions.
+    The use of jargon is one of the more overt mistakes developers make when
+    teaching a workshop.
+
+Introduce the general interactions with git and what it does.
+    After running `git init`. Introduce 'repository' as a word. Git lives in
+    in a directory and watches all changes to the directory and its children.
+    It does this by storing all the history in the .git folder.
+
+    $ ls -a 
+
+    With git we will be making snapshots of our project. When we go back in
+    time, git updates all the files in the current directory to their older
+    versions. According to all our other tools the directory is at an earlier
+    point in time. A `repository` is git's notion of our project.
+
+Teach the git data model.
+    Explain what you meant by snapshot earlier. I choose not to introduce the
+    word 'commit' earlier because it doesn't map to existing knowledge.
+    Snapshots are the atoms of git. Each has three parts: a summary/hash/set
+    of changes. Each of these pieces serve a fundamental purpose. The summary
+    is the distinction between git and google docs, the difference between a
+    navigable logical history and an insurmountable micro transaction
+    history. The hash is a unique identifier (an enthusiastic charade about
+    the insanity of uniquely identifying every possible version of every file
+    is always entertaining). More importantly it's the de facto way to refer to
+    a commit. Lastly the change set is what defines the snapshot.
+
+    A git project is just a string of these snapshots/commits. One right after
+    the next. Take a moment to illustrate that this is a valid way to
+    represent a timeline. To view any version of the project we start from the
+    beginning and apply all the changes up until that version we desired. Also
+    provide high level direction (draw out a multipath tree and show that were
+    going to learn how to create multiple versions of a project, to explore
+    alternatives, to compare differences, to merge differences, to
+    collaborate, etc).
+
+    Take a moment to reflect on what has been learned, because this is 90% of
+    what there is to git. Work to keep the learner's universe small. 
+
+    With the multi-path drawing, illustrate what happens when a single commit
+    is made. Show that git gives a handy name (reference) for the last commit
+    named HEAD.
+
+                       HEAD
+                        v
+        A    B    C     D
+        O <- O <- O  <- O
+
+
+    Explain that git refers to a string of commits as a "branch" of
+    development. The default branch is called "master". Draw what happens when
+    a new branch is made, explain how future commits go in a new direction.
+
+The git work flow.
+    At this point learners should be guided through creating a string of
+    commits. The only hurdle is explaining the stage; there is an analogy I
+    like to use.
+
+    $ echo "the contents of file a" > fileA
+    $ git status
+
+    Ask the learners what each line of the output means. It says 'git add
+    <file>' for the file to be included in the commit.
+
+    $ git add fileA
+    $ git status
+
+    Point out that git is a black box, that many of the git commands just
+    indicate what is going on. For this reason running git status is a reflex
+    for most git users. This time the message refers to a 'stage'. 
+
+    Git has the concept of a stage, which is a prepping ground for a commit.
+    When you go to the grocery you circle around and place some items in your
+    cart. But the contents of your cart are not final until you checkout. Git
+    add and git remove allow you to make changes to your cart, but it's only
+    when you commit that those changes form a logical unit of your history.
+
+    $ git commit -m "Add blah blah blah"
+    $ git status
+    $ git log
+
+    Point out the hash. In git the hash is just a way to refer to a specific
+    commit, so we can usually abbreviate the hash to the first 5 or so
+    characters in the commands that follow.
+
+    This is the time to introduce the trade-offs between git and something like
+    google docs. In docs, you don't have to invest any effort in the
+    snapshot process, it saves every micro-change with a time stamp. It doesn't
+    scale so well. After several months or a year of changes, the history is
+    un-navigable. Git requires the user to invest energy into the snapshot
+    process, as a result a git history can easily be traversed.  
+
+
+The bulk of git commands.
+
+    The next major takeaway is the structure of most git commands. This will
+    give the learner an intuition for using gits many commands.
+
+    First add a few more commits. Create fileB,fileC, each with a sentence per
+    file. Perhaps a commit per file.
+
+    Most git commands just query the git data model. For example git diff,
+    will show the differences between any two commits (snapshots in time), git
+    log will print a range of commits going back in time. Git show will show
+    the detail of any single commit: the change set, authors, date, etc.
+
+    $ git status
+    $ echo "some more as" >> fileA 
+    $ echo "some more bs" >> fileB 
+    $ git status.
+
+    Ask the learners what the status means.
+
+    $ git add fileA  
+    $ git status.
+
+    Again, ask the learners what the status means. This exercise is a
+    refresher on the distinction between the changes in our directory and
+    git's notion of the cart.
+
+    (optional) 
+    $ touch fileD.
+    $ git status.
+
+    Explain that git also has the notion of untracked files, these are files
+    that are new to git.
+
+    $ git diff.
+
+    Explain that git diff is noisy. Given the output, what is git comparing?
+    The output is showing that `some more bs` was added. That line is a change
+    that hasn't been added to our cart yet. So git is comparing our directory
+    to the cart (or index).
+
+    $ git show
+    $ git show HEAD
+    $ git show HEAD~1
+    $ git show HEAD~2
+
+    What is going on? Can anyone explain how these commands work?
+
+    $ git log
+    $ git log HEAD
+    $ git log HEAD~1 HEAD
+
+    What is going on? Can anyone explain how the commands work? In particular
+    the last command?
+
+    $ git diff 
+    $ git diff HEAD 
+    $ git diff <pick a hash> HEAD 
+
+    Git commands just need a reference to a commit, and git has a flexible way
+    of referring to commits. If a reference is omitted it assumes the most
+    recent commit (HEAD). Altogether this should give the learner solid
+    footing. They should be able to search to find out what they want to do.
+
+    Quickly illustrate a git reset/merge/cherry-pick/rebase as ideas of useful
+    things they might want to look up. The names are not important but being
+    able to ask: "How do I take a commit from another branch and place it on
+    mine?" should yield the correct command.
+
+Extended explanation of commits/branches (OPTIONAL)
+    In addition to three components of a commit: hash,summary, and changeset.
+    Every commit has a single link to its parent. I typically draw a classic
+    commit sequence.
+
+        A    B    C
+        O <- O <- O
+
+    Introduce the vocab "branch". This is a branch of development. By default
+    git gives your starting branch the name "master". You can have many
+    branches. 
+
+                (master)
+
+        A    B    C
+        o -- o -- o
+               \
+                o  
+                 D
+                
+                (beta)
+
+    If I add a commit on to the branch I get:
+
+                    (master)
+
+        A    B    C    E
+        o -- o -- o -- o 
+               \
+                o  
+                 D
+                
+                (beta)
+
+    Quickly illustrate how it's possible to have other branches. Reiterate
+    that HEAD, which just points to snapshot you're currently viewing. I like
+    to draw parallels to the file system tree and the commit tree with the
+    current working directory and to HEAD. They both represent where you are.
+
+                      master (HEAD)
+                        v
+        A    B    C     D
+        O <- O <- O  <- O
+
+    Imagine we want to view an older version of the project, say commit B.
+    This is fine our branch didn't change but where we were looking did.
+        
+           HEAD       master 
+             v          v
+        A    B    C     D
+        O <- O <- O  <- O
+
+
+    In git you will make mistakes and at some point you will make a commit D
+    that you would like to forget. In git all you do is point master to an
+    earlier commit. Note the direction of the arrows, I can only ask for a
+    commit's parent and grandparent etc. not forwards. 
+
+                master (HEAD)
+                  v      
+        A    B    C     D
+        O <- O <- O  <- O
+
+    Now the next commit E will look as follows:
+
+        A    B    C     D
+        O <- O <- O  <- O
+                   \
+                    E
+                    ^
+                master (HEAD)
+
+    And the next commit F:
+                         
+        A    B    C     D
+        O <- O <- O  <- O
+                   \
+                    E <- F
+                         ^
+                       master (HEAD)
+
+    D just hangs out. It never gets deleted. So the way you delete in git, is
+    to remove your reference to a commit. There are no pointers to D, it might
+    as well not exist. It turns out that git will save D in the .git folder
+    if you really need it. This is part of git's design, its hard to
+    permanently lose work.
+
+    Git really just boils down to a string of commits.
+
+Addendum:
+Can I commit images, pdfs, and binary files? What is plaintext?
+    This question should be answered in the unix section, but nonetheless the
+    question will come up when a learner asks about committing binary files.
+    
+    Really there are only binary files. Every file is a series of 1's and 0's
+    at the physical machine level. So software steps in and defines rules for
+    what those patterns of 1's and 0's mean. For example, Adobe PDF has a very
+    different idea of representing the letter 'A' than Microsoft Word. The
+    shell is all about a rich set of tools that can come together to create
+    something which exceeds the sum of the parts. Thus it is requisite that
+    these tools have the same definition for the letter 'A' or any character
+    for that matter. All tools in the shell speak an encoding called ASCII. As
+    a result files written in nano, can be interpreted by 'wc' (word count)
+    or can be displayed in a 'git show', etc. But, you cannot view the first 10
+    lines of a pdf, because PDF speaks a completely different language than
+    ascii. 
+    
+    Let's use the word binary to refer to files that are not ASCII. Binary
+    files can be stored in git, but git doesn't work as well, because the crux
+    of what git stores are change sets in a commit. Git cannot interpret the
+    PDF language so it cannot decipher a small change to a pdf. Every little
+    change looks like an entirely new file. Over time this can make git slow.
+    With ascii files, git will remain fast despite large projects spanning
+    decades (A fun exercise is to clone git, and view the first commit. It
+    doesn't even take long.)
+
+    Rather than storing all the python or R libraries in a git project. Store a
+    single file that lists which libraries to install. Rather than an excel
+    file, store a csv, etc. 

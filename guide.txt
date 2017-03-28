@@ -1,0 +1,89 @@
+Vocab
+^^^^^
+Repository
+    A project (folder) tracked by git
+
+Remote
+    A repository that isn't on your local machine (ex. on github)
+
+Commit
+    A documented set of changes
+
+Hash
+    Part of a commit, which uniquely identifies the commit
+    in the repository (ex. f3410e...)
+
+Index/Stage
+    An area for preparing/building a commit, see git add
+    
+Working tree
+    A name for the files in your current directory
+
+HEAD
+    A name for your last commit, much easier than entering the long
+    hash...
+
+Untracked files
+    files that have never been added in git. Git only watches files that have
+    ever been staged/committed. 
+
+Branch
+    A string of commits.
+    Like the name suggests, a branch is where the history takes a new
+    direction. Two branches may represent two different approaches to a
+    problem. Branches can be merged, or even further branched.
+
+Master
+    The default branch for a new repository
+
+
+
+Commands
+^^^^^^^^
+git status
+    Get a status of the working tree and the index.
+
+git branch 
+    List all branches
+
+git diff
+   Display the differences between your directory and your index. Answers the
+   question, "What else could I add to the index in preparation for the next commit?" 
+    
+git log 
+    Lookup history (traverse the latest commits)
+
+git show <commit hash>
+    Lookup up a single commit
+
+git init 
+    Create a new git repository
+
+git add <file>
+    Stage the changes in this file (from the working tree) for the next commit
+
+git commit -m "Renamed some important files"
+    Take all the changes in the index and create a commit. 
+    Here the message (-m) is a summary associated with set of changes prepared
+    in the index.  The index is now reset to prepare for the next commit.
+
+git push origin master
+    Take my latest commits and add them to the master branch on the origin
+    repository
+
+git clone <url/path>
+    Copy the repository at that url or path into the current directory
+
+git fetch <remote>
+    Update our local copy of the remote repository (this has no effect on our
+    history)
+
+git merge <branch>
+    Merge branch into the current branch. 
+
+More commands:
+git diff --staged
+    List changes on the stage
+
+git diff <commit> <commit>
+    Compare the differences between two snapshots of the project 

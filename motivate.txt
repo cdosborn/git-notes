@@ -1,0 +1,33 @@
+| Motivate - Explain why even to use git
+
+Who uses undo when they work?  What are some pros/cons of simple undo?
+
+    pros: 
+        - great for small changes
+    cons: 
+        - cannot support multiple histories (usually)
+        - easy to lose something
+
+How do you share work? (Email/Dropbox/GoogleDrive)?
+
+    Git reduces the friction here significantly. Typically there is a central
+    server that hosts the project. Everyone has a local copy of the project, it's
+    convenient to get the latest project, and it's convenient to contribute back. 
+
+    How does an international team of collaborators work on a project, how do
+    they coordinate?   
+
+    *Some evidence*: Git was created for developing the linux kernel.
+    Nearly 12,000 developers have contributed to the Linux kernel since tracking
+    began 10 years ago. On average there are eight changes an hour, or two every
+    15 minutes.
+    http://www.linuxfoundation.org/news-media/announcements/2015/02/linux-foundation-releases-linux-development-report
+
+Who has previously heard of git, or services such as github/bitbucket?
+
+    Git is becoming a standard accross disciplines for revisionining.
+
+Summary:
+    Git has powerful undo
+    Git is designed for collaborating
+    Git is becoming a standard

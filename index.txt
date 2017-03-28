@@ -1,0 +1,37 @@
+A lesson on git
+
+./motivate.txt * Explain why even to use git
+
+The purpose of this lesson is to teach git. At each step of the lesson our
+model of git will evolve. When our use of git becomes more demanding, we'll
+extend our model. 
+
+Understanding this model will be critical. It'll allow us to ask the right
+questions. By knowing the fundamentals of git, you'll be able to say, "Hrm it
+seems like git should be able to do x, let me google that." You'll be able to
+look stuff up on your own.
+
+The other approach is to just memorize a bunch of commands without context,
+which can be overwhelming and not fun! Many people do this :@
+
+./commit-model.txt * The first layer of the git data model
+./commit-impl.txt  * Create/view/compare a few commits
+ref-model          * The second layer of the git data model (branches/refs)
+ref-impl           * Jump around commit graph / create divergent histories
+remote-model       * The second layer of the git data model (remotes)
+remote-impl        * Jump around commit graph / create divergent histories
+
+The core data: commits/refs/repos
+The secondary data: branches(refs to commits)/remotes(refs to repos)
+
+Vocabulary (git jargon):
+
+SHA/Hash
+Commit 
+Repo/Repository 
+Clone
+
+
+Useful links:
+
+Github's lexicon * https://help.github.com/articles/github-glossary/

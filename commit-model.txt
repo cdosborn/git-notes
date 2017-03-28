@@ -1,0 +1,48 @@
+| Commit-model * The first layer of the git data model
+
+Git sits inside a folder and watches everything in that folder.  Git allows
+you to snapshot this folder at any moment.
+
+Edit some files, add a summary, and snapshot.
+A git project is just a sequence of snapshots.
+
+For any snapshot you can view the summary and see what was going on. Or you
+can see the snapshot before, and the one before that etc.
+
+Here's a project that I've put under revision control.
+      _____       _____       _____
+     |     |     |     |     |     |
+     |  A  | ==> |  B  | ==> |  C  |
+     \_____|     \_____|     \_____|
+
+    - create    - add a     - add an
+    initial     player      enemy
+    game
+
+Git refers to snapshots as commits. Commit A is the parent of commit B,
+because A came directly before B, and B is the parent of C.
+
+When you create a commit, git will give it a unique name. The unique name is
+40 characters long and rather arbitrary, but it uniquely identifies the
+snapshot of your project. 
+
+Git refers to these names as hashes.
+      _____                 
+     |     |   c9643209b8d86d8e873bec..
+     |  C  |   Add an enemy              
+     \_____|                 
+
+        v
+      _____ 
+     |     |   8d2b3dd50e1a80e82df1da..
+     |  B  |   Add a player
+     \_____|
+
+        v
+      _____ 
+     |     |   7d8d2b3dd50e1a80e82df1.. 
+     |  A  |   Create initial game
+     \_____|
+                   
+
+To refer to a commit you use the commit's hash.
