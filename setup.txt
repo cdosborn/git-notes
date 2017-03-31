@@ -1,0 +1,36 @@
+| Setup - Setup git config  
+
+Give git information about the commit author (Navigate to slide):
+
+    git config --global user.name "Vlad Dracula"
+    git config --global user.email "vlad@tran.sylvan.ia"
+    git config --global core.editor "nano"
+    git config --global color.ui "auto"
+
+
+Create our first git project (Open Terminal.app or git-bash):
+
+    # Create a folder
+    mkdir ~/git-project
+
+    # Navigate into that folder
+    cd ~/git-project
+
+    # Create our first git project
+    git init
+
+
+Give large picture (git stores snapshots, and we can easily view any snapshot,)
+    - Git lives in a folder and stores every version of every file you save!
+    - Explain typical workflow of checking out an older snapshot and all the
+      files magically update to their newer versions!
+    - Otherwise git stays completely out of the way of your project!
+    
+    # Show the hidden .git folder where git stores everything.
+    ls -a
+
+
+
+Many commands but only a handful of ideas
+Segue ./concepts.txt
+

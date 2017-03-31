@@ -1,4 +1,0 @@
-SHA/Hash : A unique name for a commit
-Commit : A snapshot of the project
-Repo/Repository 
-Clone

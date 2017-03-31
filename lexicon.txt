@@ -1,27 +1,32 @@
+Donald Knuth on how to write a tutorial/manual:
+The reason for such different levels of complexity is that people change as they grow accustomed to any powerful tool. ... As you gain more and more experience ... your perspective will continue to change and you will run into different sorts of challenges. That’s the way it is with any powerful tool: There’s always more to learn, and there are always better ways to do what you’ve done before. At every stage in the development you’ll want a slightly different sort of manual. You may even want to write one yourself. By paying attention to the dangerous bend signs in this book you’ll be better able to focus on the level that interests you at a particular time.
+
 Vocab
 ^^^^^
 Repository
     A project (folder) tracked by git
 
 Remote
-    A repository that isn't on your local machine (ex. on github)
+    A name and location of a collaborator's respository used for sharing
+    changes
 
 Commit
     A documented set of changes
 
 Hash
-    Part of a commit, which uniquely identifies the commit
-    in the repository (ex. f3410e...)
+    A name which uniquely identifies the commit in the repository 
+    (ex.  f3410e...)
 
 Index/Stage
-    An area for preparing/building a commit, see git add
+    The set of changes to be saved permanently by the act of committing.
     
 Working tree
     A name for the files in your current directory
 
 HEAD
-    A name for your last commit, much easier than entering the long
-    hash...
+    The name for the current snapshot. When you jump back in time, git changes
+    HEAD to a different snapshot and checks out all the files at that point in
+    time.
 
 Untracked files
     files that have never been added in git. Git only watches files that have
@@ -36,58 +41,81 @@ Branch
 Master
     The default branch for a new repository
 
+'detached HEAD' state
+   The state after running, git checkout <commit>. The only reference to
+   commits created in this state is HEAD, so jumping somewhere else, will
+   make all that work unreachable.
 
+'attached HEAD' state
+    The current branch (or label) advances with you as you commit. The state
+    after running, git checkout <branch>.
 
 Commands
 ^^^^^^^^
+git checkout <commit>
+    Update all files in the working directory to the snapshot <commit>, the reference
+    HEAD then points to <commit>. Git enters 'detached HEAD' state.
+
+git checkout <branch>
+    Update all files in the working directory to the snapshot referenced by
+    <branch>, the reference HEAD is updated to that commit. Git enters
+    'attached HEAD' state.   
+
 git status
-    Get a status of the working tree and the index.
+    Get a status of the working tree and the stage.
 
 git branch 
     List all branches
 
 git diff
-   Display the differences between your directory and your index. Answers the
-   question, "What else could I add to the index in preparation for the next commit?" 
-    
-git log 
-    Lookup history (traverse the latest commits)
+   Display the differences between your directory and your stage. Answers the
+   question, "What else could I add to the stage in preparation for the next commit?" 
 
-git show <commit hash>
-    Lookup up a single commit
+git diff --staged
+    List changes on the stage. Answers the question, "What is on the stage,
+    about to be committed?"
+
+git diff <commit> <commit>
+    Compare the differences between two snapshots of the project 
+    
+git log <commit>
+    Prints the history of commits starting at commit. 
+
+git show <commit>
+    Lookup up a single commit, see its changes, author, etc
 
 git init 
     Create a new git repository
 
 git add <file>
-    Stage the changes in this file (from the working tree) for the next commit
+    Add the changes in the file to the stage the changes in this file (from the working tree) for the next commit
+
+git rm <file>
+    Un-stage the changes in this file (from the working tree) for the next commit
 
 git commit -m "Renamed some important files"
-    Take all the changes in the index and create a commit. 
-    Here the message (-m) is a summary associated with set of changes prepared
-    in the index.  The index is now reset to prepare for the next commit.
+    Take all the changes in the stage and create a commit. 
+    Here the message (-m) becomes the summary becomes the summary of the
+    commit. The stage is now cleared to prepare for the next commit.
+
+git branch <name> <commit>
+    Assign a label to <commit>, so that we can refer to the commit later
 
 git push origin master
-    Take my latest commits and add them to the master branch on the origin
-    repository
+    Update the master branch in the origin repository to mirror my master
+    branch 
 
 git clone <url/path>
     Copy the repository at that url or path into the current directory
 
 git fetch <remote>
-    Update our local copy of the remote repository (this has no effect on our
-    history)
+    Update our knowledge of the remote. This updates our remote branches, but
+    doesn't affect our local branches.
 
 git merge <branch>
-    Merge branch into the current branch. 
+    Merge branch into the current branch. This has no effect on <branch>.
 
 More commands:
-git diff --staged
-    List changes on the stage
-
-git diff <commit> <commit>
-    Compare the differences between two snapshots of the project 
-
 git merge-base <commit> <commit> 
     Print the common ancestor of two commits
 

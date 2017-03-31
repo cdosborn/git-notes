@@ -1,0 +1,9 @@
+| Goals - Set the stage, for what to expect
+
+To use that git thing everyone is talking about!
+Not hate git, and potentially enjoy it, maybe
+Understand what it offers, and not be a cool-aid drinker!
+Be able to collaborate and participate in a brave new world of collaboration and openness!
+
+Who uses undo when they work?  What are some pros/cons of simple undo?
+Segue: /Users/cdosborn/proj/git-notes/motivate.txt

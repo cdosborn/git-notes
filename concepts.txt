@@ -1,0 +1,66 @@
+| Concepts - What is a repository, what is a commit, how does it form a tree?
+
+
+Explain the word repository (advance slide)
+
+    A `repository` is git's notion of our project.
+
+Explain the commit, the basic building block
+
+    Motivate by suggesting that git needs to store snapshots of the project
+
+    This history of snapshots is the entirety of a git repository.
+
+    Git calls these snapshots commits each has a 
+        - set of changes - explain how an entire history is just the sum of all changes 
+        - summary - provides context, explains the reason for the changes
+        - a direct parent (pointed to by an arrow)
+        - a unique name (the hash) that is generated based on the (parent, the summary, and the set of changes)
+            - Git has many ways to refer to a commit!
+
+    Since each snapshot has a parent, it forms a tree or formally a graph.
+    This is so important because most git commands can be expressed in terms
+    of simple questions you'd like to ask the graph!
+
+    Illustrate a divergent history without making a branch (we're about to
+    explain why branches exist).
+
+    Show what happens when you checkout (move HEAD) to master, where did all
+    the commits go? 
+
+    We need to explain how git can draw the graph. Essentially git stores two
+    things, a large soup of commits jumbled around, and a list of references. 
+    
+    Each reference we create fully identifies one of these commits in the
+    soup, and Git can look at that commit and figure out that parent's commit,
+    and the parent's parent's commit, and so on. Recall that every commit
+    contains a reference to its parent (the four parts are a name/summary/parent/set of changes)
+
+    <jump HEAD back to the lost commit>
+
+    And its back. But let's say we want to keep this part of the history
+    around. Then we just need to save a reference. We do this by creating a
+    branch, a branch is just a label on a commit. (There is a little more to
+    it that we will discuss).
+
+    <Create a branch called feature then move HEAD>
+
+    Now we can move away and the commits are still reachable! 
+
+    Overtime Git forgets about commits that are unreachable. This is how
+    deletion in git works.
+
+    Another way we can delete, is to move a label!
+
+    <git reset --hard HEAD~1>
+
+    We moved label to the parent, so the child is no longer reachable, if we
+    make more commits, its as if the child never existed.
+
+    It's actually really hard to delete something in git that is ever made
+    into a commit. As long as I have a label pointing to it, you cannot do
+    anything!
+
+Summary
+    git's branches are really just labels, which are used as placeholders
+    Deletion in git is as simple as making commits unreachable

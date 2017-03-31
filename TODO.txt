@@ -1,0 +1,4 @@
+Add all github accounts to project
+Find out how to switch between graph/terminal/slides
+Print the lexicons (or google doc)
+Add the history site of commands to the etherpad

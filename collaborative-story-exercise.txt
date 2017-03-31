@@ -46,5 +46,3 @@ sentences). Push your changes up, and pull other's changes down as well.
 
 3.2) Rerun the command from 2.2 and see if your story is different now (or
 funny?).
-
-

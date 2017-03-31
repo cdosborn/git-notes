@@ -1,0 +1,70 @@
+Remember: Go slow, 15 min attention span
+
+Have people write down any pre-existing questions that they have about git,
+and we'll answer them after the break.
+
+Explain the goals of the workshop (./goals.txt)
+
+Motivate Git (dont spend much time)
+    Linux has 12000 contributors
+    Exciting/allowed for serious progress
+    Open datasets/public research/collaboration!
+
+Discuss approach (./approach.txt)
+    Git is a power tool
+        The hammer doesn't ask
+    Git is a black box.
+    Git has its own lexicon.
+
+Git setup (./setup.txt)
+    Give git information about the commit author (Navigate to slide):
+    Create our first git project (Open Terminal.app or git-bash):
+    Explain overall interaction with git
+
+Concepts (./concepts)
+    Explain the word repository (advance slide)
+    Explain the graph!
+
+Hands on!
+
+    Structure of git commands!
+    Make some commits!
+    Branching and HEAD
+        Git has the notion of being /ON/ a branch or /OFF/ a branch, when its
+        on a branch feature, and you make a commit, git relabels feature to
+        point to your new commit.
+
+        When you're not on any branch, git won't do this for you. Git will
+        loudly complain when you're off a branch because its easy to lose any
+        work you perform.
+
+        Recall that if you don't attach a label Git won't be able to reach
+        those commits. 
+
+        Branches really are /just/ labels. 
+            git has no idea where the branch begins, which is unintuitive.
+
+    Push commits up to github
+
+        Explain what a remote is
+
+        Add github remote
+
+        Allude to differences between local branches and remote branches
+
+    Fork story.git repo in github
+    Clone their fork of story.git repo in github
+    Add my remote, add their own remote
+
+        After everyone has cloned, push some changes. 
+        Experiment with fetching and show that fetching doesn't affect our
+        repo, explain (remote vs local branches)
+        Read the status of git status
+        Merge
+        Then introduce the notorious/infamous command `git pull`
+
+Stickies before exiting.
+10am break until 10:20am
+
+
+What did you like, what did you dislike?

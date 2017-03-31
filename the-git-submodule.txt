@@ -102,7 +102,7 @@ The git work flow.
     Git has the concept of a stage, which is a prepping ground for a commit.
     When you go to the grocery you circle around and place some items in your
     cart. But the contents of your cart are not final until you checkout. Git
-    add and git remove allow you to make changes to your cart, but it's only
+    add and git rm allow you to make changes to your cart, but it's only
     when you commit that those changes form a logical unit of your history.
 
     $ git commit -m "Add blah blah blah"

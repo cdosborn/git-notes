@@ -1,0 +1,22 @@
+| Approach - Lexicon, keeping the world small
+
+Git is a power tool
+    It's not the most friendly. The hammer doesn't ask you if you intend to
+    smash your thumb, it just let's it happen. Fortunately git makes it very
+    hard to lose your work, once is committed, it can be retrieved!
+
+Git is a black box.
+    Many of the git commands are just about interrogating git, and seeing
+    what's going on. We're going to learn how to ask these questions.
+
+Git has its own lexicon.
+    The first time you run a command you get bombarded by jaron, and we're
+    going to be intentional about exposing the jargon early. 
+
+Summary:
+    We're going to tread carefully.
+
+    This workshop has a unique approach in that we're not going to stress
+    workflows as much as concepts! Missing this is the biggest mistake when
+    introducing git.
+
